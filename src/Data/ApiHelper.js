@@ -1,7 +1,7 @@
-import React from 'react';
 
-export default class ApiHelper extends React.Component {
+export default class ApiHelper {
  
     //dankkiä api gettiä
-    //geneerisiä lauseita, jotka saavat urlit ulkoa?    
+    //geneerisiä lauseita, jotka saavat urlit ulkoa? 
+       
 }
