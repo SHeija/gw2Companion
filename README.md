@@ -7,10 +7,9 @@ Expo SDK
 React Native Elements (MIT)
 
 Features:
-none yet!
+World boss timers
 
 Planned Features:
-World boss timers
 Daily Quests
 Big event timers (sandstorm, etc)
 Filtering based on expansion
