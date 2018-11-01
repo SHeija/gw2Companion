@@ -1,14 +1,18 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { View } from 'react-native';
+import { Header } from 'react-native-elements'
+import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import WorldBosses from './src/Screens/WorldBosses';
 import DailyQuests from './src/Screens/DailyQuests';
 
-const RootStack = createStackNavigator(
+const RootStack = createMaterialTopTabNavigator(
   {
     WorldBosses: {screen: WorldBosses},
+    DailyQuests: {screen: DailyQuests}
   },
   {
     initialRouteName: 'WorldBosses',
+    tabBarPosition: 'bottom', //yes, I used toptab and then put it on the bottom.
   }
 
 );
@@ -16,7 +20,10 @@ const RootStack = createStackNavigator(
 export default class App extends React.Component {
   render () {
     return (
-      <RootStack/>
+    
+            <RootStack/>
+
+
     );
   }
 }

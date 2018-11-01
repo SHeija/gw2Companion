@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Alert } from 'react-native';
-import { List, ListItem } from 'react-native-elements'
+import { List, ListItem, Header } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
 
 export default class WorldBosses extends React.Component {
@@ -10,6 +10,10 @@ export default class WorldBosses extends React.Component {
         this.state = {data:schedule}
         this.schedule = schedule;
     }
+
+    static navigationOptions = {
+        title: 'World Bosses',
+      };
     
     componentDidMount () {
         this.updateList();
