@@ -11,29 +11,41 @@ export default class DailyQuests extends React.Component {
             {
                 "pve": [
                   {
-                    "id": 1984,
+                    "id": 0,
                     "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2","HeartOfThorns"]
-                  },
-                  {
-                    "id": 1951,
-                    "level": { "min": 11, "max": 80 },
                     "required_access": ["GuildWars2"]
-                  },
-                  {
-                    "id": 2945,
-                    "level": { "min": 80, "max": 80 },
-                    "required_access": ["HeartOfThorns"]
                   },
                 ],
                 "pvp": [
                   {
-                    "id": 1858,
+                    "id": 0,
                     "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2","HeartOfThorns"]
+                    "required_access": ["GuildWars2"]
                   },
                 ],
+                "wvw": [
+                    {
+                      "id": 0,
+                      "level": { "min": 1, "max": 80 },
+                      "required_access": ["GuildWars2"]
+                    },
+                ],
+                "fractals": [
+                {
+                    "id": 0,
+                    "level": { "min": 1, "max": 80 },
+                    "required_access": ["GuildWars2"]
+                },
+                ],
+                "special": [
+                {
+                    "id": 0,
+                    "level": { "min": 1, "max": 80 },
+                    "required_access": ["GuildWars2"]
+                },
+                ],
             }
+        }
     }
 
     getData = (url) => {
@@ -58,7 +70,7 @@ export default class DailyQuests extends React.Component {
             <View>
                 <List>
                     {
-                        this.state.data.pve.map((item) => (
+                        this.state.data.wvw.map((item) => (
                         <ListItem
                             key={item.id}
                             title={item.id}
