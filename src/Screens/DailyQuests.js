@@ -48,6 +48,12 @@ export default class DailyQuests extends React.Component {
         }
     }
 
+    /*
+    datasta erotetaan taulu, jossa id:t
+    id:t annetaan https://api.guildwars2.com/v2/achievements/{idt} paremetrina -> taulukko, jossa questien varsinaiset tiedot
+    mapataan listaan
+    */
+
     getData = (url) => {
       
         fetch(url)

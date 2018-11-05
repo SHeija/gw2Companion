@@ -1,7 +1,21 @@
 
 export default class ApiHelper {
  
-    //dankkiä api gettiä
-    //geneerisiä lauseita, jotka saavat urlit ulkoa? 
+    getData = (url) => {
+
+        const result = [];
+      
+        fetch(url)
+        .then((response) => response.json())
+        .then((responseJson) => { 
+          result = responseJson;
+        })
+        .catch((error) => { 
+          result = error; 
+        }); 
+        
+        return result;
+
+      }
        
 }

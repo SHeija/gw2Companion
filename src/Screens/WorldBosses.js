@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Alert, Header } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert,} from 'react-native';
 import { List, ListItem, } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
 
