@@ -1,9 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Alert } from 'react-native';
-import { List, ListItem } from 'react-native-elements'
+import { StyleSheet, Text, View, ScrollView, Alert, Header } from 'react-native';
+import { List, ListItem, } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
 
 export default class WorldBosses extends React.Component {
+    static navigationOptions = {
+        title: 'Home',
+      };
 
     constructor(props){
         super(props);
@@ -53,6 +56,8 @@ export default class WorldBosses extends React.Component {
     render () {
         return (
             <View>
+               
+                    
                 <ScrollView>
                     <List>
                         {
@@ -60,7 +65,7 @@ export default class WorldBosses extends React.Component {
                             <ListItem
                                 key={item.Time+item.Boss}
                                 title={item.Boss}
-                                subtitle={item.Time}
+                                subtitle={item.Time+" "+item.Zone}
                             />
                             ))
                         }
