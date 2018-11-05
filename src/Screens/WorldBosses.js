@@ -4,9 +4,6 @@ import { List, ListItem, } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
 
 export default class WorldBosses extends React.Component {
-    static navigationOptions = {
-        title: 'Home',
-      };
 
     constructor(props){
         super(props);
