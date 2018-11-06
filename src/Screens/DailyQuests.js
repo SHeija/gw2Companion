@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
-import { List, ListItem, } from 'react-native-elements'
-
+import { List, ListItem, } from 'react-native-elements';
+import { helper } from '../Data/ApiHelper';
 
 export default class DailyQuests extends React.Component {
     
@@ -55,20 +55,40 @@ export default class DailyQuests extends React.Component {
     */
 
     getData = (url) => {
-      
-        fetch(url)
-        .then((response) => response.json())
-        .then((responseJson) => { 
-          this.setState({data: responseJson});
-        })
-        .catch((error) => { 
-          Alert.alert(error); 
-        });    
-      }
 
-    componentDidMount (){
-        const dailyApi = 'https://api.guildwars2.com/v2/achievements/daily';
-        this.getData(dailyApi)
+        //template = the "shape" of the expected object
+        let result = fetch(url)
+            .then((response) => response.json())
+            .then((responseJson) => { 
+                return responseJson
+            })
+
+            .catch((error) => { 
+                Alert.alert(error);
+            });
+        
+        
+        return result;
+
+    }
+
+  
+    async componentDidMount (){
+       
+        //fetching today's quest ids
+        const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
+        const data_ids = await this.getData(Dailyurl);
+
+        //separating ids
+        
+        //fetching today's quests based on id's
+
+
+        this.setState({
+            data:data_ids //TODO!!!
+        })
+        
+
     }
 
     render () {
@@ -76,7 +96,7 @@ export default class DailyQuests extends React.Component {
             <View>
                 <List>
                     {
-                        this.state.data.wvw.map((item) => (
+                        this.state.data.pve.map((item) => (
                         <ListItem
                             key={item.id}
                             title={item.id}
@@ -89,3 +109,4 @@ export default class DailyQuests extends React.Component {
     }
         
 }
+

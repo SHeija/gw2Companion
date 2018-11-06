@@ -1,21 +1,27 @@
+import React from 'react';
 
-export default class ApiHelper {
+class ApiHelper {
  
-    getData = (url) => {
+   async getData (url) {
 
-        const result = [];
-      
-        fetch(url)
+        //template = the "shape" of the expected object
+        let result = await fetch(url)
         .then((response) => response.json())
         .then((responseJson) => { 
-          result = responseJson;
+          return responseJson
         })
+    
         .catch((error) => { 
           result = error; 
-        }); 
+        });
+         
         
-        return result;
-
+       return result;
+    
       }
+    
        
 }
+
+const helper = ApiHelper;
+export default helper;

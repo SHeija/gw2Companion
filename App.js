@@ -8,7 +8,9 @@ const RootStack = createStackNavigator({
     screen: createMaterialTopTabNavigator({ 
       WorldBosses: {screen: WorldBosses},
       DailyQuests: {screen: DailyQuests},
-     }),
+     },
+     ),
+    
     navigationOptions: { title: 'GW2Companion' }
  }
 })
