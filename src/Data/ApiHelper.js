@@ -1,7 +1,27 @@
+import React from 'react';
 
-export default class ApiHelper {
+class ApiHelper {
  
-    //dankkiä api gettiä
-    //geneerisiä lauseita, jotka saavat urlit ulkoa? 
+   async getData (url) {
+
+        //template = the "shape" of the expected object
+        let result = await fetch(url)
+        .then((response) => response.json())
+        .then((responseJson) => { 
+          return responseJson
+        })
+    
+        .catch((error) => { 
+          result = error; 
+        });
+         
+        
+       return result;
+    
+      }
+    
        
 }
+
+const helper = ApiHelper;
+export default helper;
