@@ -8,9 +8,10 @@ React Native Elements (MIT)
 
 Features:
 World boss timers
+Daily Quests
+
 
 Planned Features:
-Daily Quests
 boss timers in whatever time zone the user is in
 Big event timers (sandstorm, etc)
 Filtering based on expansion

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, ScrollView } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
 import { helper } from '../Data/ApiHelper';
 
@@ -50,13 +50,12 @@ export default class DailyQuests extends React.Component {
 
     /*
     datasta erotetaan taulu, jossa id:t
-    id:t annetaan https://api.guildwars2.com/v2/achievements/{idt} paremetrina -> taulukko, jossa questien varsinaiset tiedot
+    id:t annetaan https://api.guildwars2.com/v2/achievements?ids=1,2,3 paremetrina -> objekti, jossa questien varsinaiset tiedot
     mapataan listaan
     */
 
     getData = (url) => {
 
-        //template = the "shape" of the expected object
         let result = fetch(url)
             .then((response) => response.json())
             .then((responseJson) => { 
@@ -72,38 +71,103 @@ export default class DailyQuests extends React.Component {
 
     }
 
+    getInfo = (object) => {
+
+        //separating ids
+        let idstring = '';
+        for (let i = 0; i<Object.keys(object).length; i++){
+            idstring = idstring + object[i].id +',';
+        }
+
+        //fetching today's quests based on id's, in the 
+
+        const url = 'https://api.guildwars2.com/v2/achievements?ids='+idstring
+        return this.getData(url);
+
+    }
   
     async componentDidMount (){
        
         //fetching today's quest ids
         const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
         const data_ids = await this.getData(Dailyurl);
-
-        //separating ids
         
-        //fetching today's quests based on id's
-
+        //creating a temporary copy of this.state.data and inserting info
+        let data = this.state.data;
+        data.pve = await this.getInfo(data_ids.pve);
+        data.pvp = await this.getInfo(data_ids.pvp);
+        data.wvw = await this.getInfo(data_ids.wvw);
+        data.fractals = await this.getInfo(data_ids.fractals);
+        data.special = await this.getInfo(data_ids.special);
 
         this.setState({
-            data:data_ids //TODO!!!
+            data:data
         })
         
 
     }
-
+    
+   
     render () {
         return (
             <View>
-                <List>
-                    {
-                        this.state.data.pve.map((item) => (
-                        <ListItem
-                            key={item.id}
-                            title={item.id}
-                        />
-                        ))
-                    }
-                </List>
+                <ScrollView>
+                    <List>
+                        {
+                            this.state.data.pve.map((item) => (
+                            <ListItem
+                                key={item.id}
+                                title={item.name}
+                                subtitle={item.requirement}
+                                subtitleNumberOfLines = {5}
+                                hideChevron
+                            />
+                            ))
+                        }
+                    </List>
+                    <List>
+                        {
+                            this.state.data.pvp.map((item) => (
+                            <ListItem
+                                key={item.id}
+                                title={item.name}
+                                subtitle={item.requirement}
+                                subtitleNumberOfLines = {5}
+                                hideChevron
+
+                            />
+                            ))
+                        }
+                    </List>
+                    <List>
+                        {
+                            this.state.data.wvw.map((item) => (
+                            <ListItem
+                                key={item.id}
+                                title={item.name}
+                                subtitle={item.requirement}
+                                subtitleNumberOfLines = {5}
+                                hideChevron
+
+                            />
+                            ))
+                        }
+                    </List>
+                    <List>
+                        {
+                            this.state.data.fractals.map((item) => (
+                            <ListItem
+                                key={item.id}
+                                title={item.name}
+                                subtitle={item.requirement}
+                                subtitleNumberOfLines = {5}
+                                hideChevron
+
+                            />
+                            ))
+                        }
+                    </List>
+                </ScrollView>
             </View>
         );
     }
