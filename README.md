@@ -5,6 +5,7 @@ A companion app for Guild Wars 2. The app displays game information from the gam
 Libraries/etc. used:
 Expo SDK
 React Native Elements (MIT)
+React Navigation
 
 Features:
 World boss timers

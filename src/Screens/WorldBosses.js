@@ -10,6 +10,10 @@ export default class WorldBosses extends React.Component {
         this.state = {data:schedule}
         this.schedule = schedule;
     }
+
+    static navigationOptions = {
+        title: 'World Bosses',
+      };
     
     componentDidMount () {
         this.updateList();
