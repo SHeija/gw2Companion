@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Alert, ScrollView } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
-import { helper } from '../Data/ApiHelper';
+import { getData } from '../Data/ApiHelper';
 
 export default class DailyQuests extends React.Component {
     
@@ -52,37 +52,20 @@ export default class DailyQuests extends React.Component {
     datasta erotetaan taulu, jossa id:t
     id:t annetaan https://api.guildwars2.com/v2/achievements?ids=1,2,3 paremetrina -> objekti, jossa questien varsinaiset tiedot
     mapataan listaan
-    */
-
-    getData = (url) => {
-
-        let result = fetch(url)
-            .then((response) => response.json())
-            .then((responseJson) => { 
-                return responseJson
-            })
-
-            .catch((error) => { 
-                Alert.alert(error);
-            });
-        
-        
-        return result;
-
-    }
+        */
 
     getInfo = (object) => {
-
+        //object = the "category" being fetched
         //separating ids
         let idstring = '';
         for (let i = 0; i<Object.keys(object).length; i++){
             idstring = idstring + object[i].id +',';
         }
 
-        //fetching today's quests based on id's, in the 
+        //fetching today's quests based on id's
 
         const url = 'https://api.guildwars2.com/v2/achievements?ids='+idstring
-        return this.getData(url);
+        return getData(url);
 
     }
   
@@ -90,7 +73,7 @@ export default class DailyQuests extends React.Component {
        
         //fetching today's quest ids
         const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
-        const data_ids = await this.getData(Dailyurl);
+        const data_ids = await getData(Dailyurl);
         
         //creating a temporary copy of this.state.data and inserting info
         let data = this.state.data;
@@ -173,4 +156,3 @@ export default class DailyQuests extends React.Component {
     }
         
 }
-
