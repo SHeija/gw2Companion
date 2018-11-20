@@ -1,19 +1,19 @@
 import React from 'react';
-import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
-import { CheckBox, Button } from 'react-native-elements';
+import { View, Text, Alert, AsyncStorage } from 'react-native';
+import { Button, List, ListItem } from 'react-native-elements';
 
 
 export default class Settings extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { settings : "", basic:true, HoT:true, PoF:true };
+        this.state = { settings : "", basic:false, HoT:true, PoF:true };
     }
 
     componentDidMount(){
-        //this.saveSettings();
         this.loadSettings();
     }
 
+    //Loads settings from asyncstorage
     loadSettings = async () => {
         try {
           let settings = await AsyncStorage.getItem('settings');
@@ -27,24 +27,11 @@ export default class Settings extends React.Component {
         }
     }
 
+    //saves settings to asyncstorage
     saveSettings = async () => {
-
-        let settings = '';
        
-        if (this.state.basic && !this.state.settings.includes("GuildWars2")){
-            settings+="GuildWars2, ";
-        }
-        if (this.state.HoT && !this.state.settings.includes("HeartOfThorns")){
-            settings+="HeartOfThorns, ";
-        }
-        if (this.state.PoF && !this.state.settings.includes("PathOfFire")){
-            settings+="PathOfFire, ";
-        }
-
-        this.setState({
-            settings:settings
-        })
-
+        const settings = this.state.settings;
+       
         try {
             await AsyncStorage.setItem('settings', settings);
         }catch (error){
@@ -52,31 +39,70 @@ export default class Settings extends React.Component {
         }
     }
 
+    //formats settings into a string
+    saveOnPress = () => {
+        let settings = '';
+        if (this.state.basic){
+            settings+="GuildWars2,"
+        }
+        if (this.state.HoT){
+            settings+="HeartOfThorns,"
+        }
+        if (this.state.PoF){
+            settings+="PathOfFire,"
+        }
+
+        this.setState({
+            settings:settings
+        }, () => {
+            this.saveSettings();
+        });   
+        
+    }
+
     render(){
+
         return (
             <View>
-                <CheckBox
-                    center
-                    title='Basic GW2'
-                    checked={this.state.basic}
-                    onIconPress={(basic) => this.setState({basic:!basic})}
-                />
-                <CheckBox
-                    center
-                    title='Heart of Thorns'
-                    checked={this.state.HoT}
-                    onIconPress={(HoT) => this.setState({HoT:!HoT})}
+                <List>
+                    <ListItem
+                        title="Guild Wars 2"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.basic}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,basic: value}
+                            })
+                          }}
+                    />
+                     <ListItem
+                        title="Heart of Throrns"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.HoT}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,HoT: value}
+                            })
+                          }}
+                    />
+                     <ListItem
+                        title="Path of Fire"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.PoF}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,PoF: value}
+                            })
+                          }}
+                    />
+                    
+                </List>
+                <Button title='Save settings' onPress={this.saveOnPress}/>
+              
 
-                />
-                 <CheckBox
-                    center
-                    title='Path of Fire'
-                    checked={this.state.PoF}
-                    onIconPress={(PoF) => this.setState({PoF:!PoF})}
-
-                />
-                <Button title='Save settings' onPress={this.saveSettings}/>
-                <Text>{this.state.settings}</Text>
             </View>
         );
     }

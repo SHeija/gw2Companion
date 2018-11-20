@@ -55,7 +55,7 @@ export default class DailyQuests extends React.Component {
         */
 
     getInfo = (object) => {
-        //object = the "category" being fetched
+        //object = the "category" being fetched, e.g "pvp"
         //separating ids
         let idstring = '';
         for (let i = 0; i<Object.keys(object).length; i++){
