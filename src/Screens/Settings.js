@@ -6,7 +6,7 @@ import { Button, List, ListItem } from 'react-native-elements';
 export default class Settings extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { settings : "", basic:false, HoT:true, PoF:true };
+        this.state = { settings: {"GuildWars2":false, "HeartOfThorns":false, "PathOfFire":false}, basic:true, HoT:true, PoF:true };
     }
 
     componentDidMount(){
@@ -16,10 +16,13 @@ export default class Settings extends React.Component {
     //Loads settings from asyncstorage
     loadSettings = async () => {
         try {
-          let settings = await AsyncStorage.getItem('settings');
+          let settings = JSON.parse(await AsyncStorage.getItem('settings'));
+          
           if (settings != null){
             this.setState({
-                settings:settings
+                basic:settings["GuildWars2"],
+                HoT:settings["HeartOfThorns"],
+                PoF:settings["PathOfFire"]
               });
           }
         }catch (error){
@@ -30,7 +33,7 @@ export default class Settings extends React.Component {
     //saves settings to asyncstorage
     saveSettings = async () => {
        
-        const settings = this.state.settings;
+        const settings = JSON.stringify(this.state.settings);
        
         try {
             await AsyncStorage.setItem('settings', settings);
@@ -41,15 +44,16 @@ export default class Settings extends React.Component {
 
     //formats settings into a string
     saveOnPress = () => {
-        let settings = '';
+        let settings = {"GuildWars2":false, "HeartOfThorns":false, "PathOfFire":false};
+
         if (this.state.basic){
-            settings+="GuildWars2,"
+            settings["GuildWars2"] = true;
         }
         if (this.state.HoT){
-            settings+="HeartOfThorns,"
+            settings["HeartOfThorns"] = true;
         }
         if (this.state.PoF){
-            settings+="PathOfFire,"
+            settings["PathOfFire"] = true;
         }
 
         this.setState({
@@ -64,6 +68,8 @@ export default class Settings extends React.Component {
 
         return (
             <View>
+                <Text>Selected expansions:</Text>
+
                 <List>
                     <ListItem
                         title="Guild Wars 2"
@@ -101,6 +107,7 @@ export default class Settings extends React.Component {
                     
                 </List>
                 <Button title='Save settings' onPress={this.saveOnPress}/>
+                
               
 
             </View>
