@@ -5,6 +5,7 @@ import DailyQuests from './src/Screens/DailyQuests';
 import Settings from './src/Screens/Settings';
 
 //topbar navigator inside a stack navigator
+
 const RootStack = createStackNavigator({
   MyTab: {
     screen: createMaterialTopTabNavigator({ 
@@ -12,11 +13,14 @@ const RootStack = createStackNavigator({
       DailyQuests: {screen: DailyQuests},
       Settings: {screen: Settings},
      },
+     
      ),
     
     navigationOptions: { title: 'GW2Companion' }
  }
 })
+
+
 
 export default class App extends React.Component {
 

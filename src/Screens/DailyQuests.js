@@ -77,6 +77,12 @@ export default class DailyQuests extends React.Component {
         this.loadSettings();
         this.updateList();   
 
+        //stuff is re-loaded when screen is navigated to
+        this.props.navigation.addListener("didFocus", () => {
+            this.loadSettings();
+            this.updateList();   
+        });
+
     }
     
    
@@ -84,6 +90,12 @@ export default class DailyQuests extends React.Component {
         if (this.state.loading){
             return (
                 <View><Text>Loading!</Text></View>
+            )
+        }else if (!this.state.settings.pve && !this.state.settings.pvp && !this.state.settings.wvw && !this.state.settings.fractals ){
+            return (
+                <View>
+                    <Text>No content selected - go enable something in the settings</Text>
+                </View>
             )
         
         }else {

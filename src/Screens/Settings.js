@@ -22,6 +22,10 @@ export default class Settings extends React.Component {
                 });
             }
         });
+
+        this.props.navigation.addListener("didFocus", () => {
+            this.loadSettings();
+        });
     }
 
     //Loads settings from asyncstorage
@@ -96,7 +100,9 @@ export default class Settings extends React.Component {
         return (
             <View>
                 <Text>Selected expansions:</Text>
-
+                { !this.state.basic && !this.state.HoT && !this.state.PoF && 
+                    <Text>Note: if nothing is selected, "World bosses" will be empty</Text>
+                }
                 <List>
                     <ListItem
                         title="Guild Wars 2"
@@ -134,7 +140,9 @@ export default class Settings extends React.Component {
                     
                 </List>
                 <Text>Selected Content:</Text>
-
+                { !this.state.pve && !this.state.pvp && !this.state.wvw && !this.state.fractals && 
+                    <Text>Note: if nothing is selected, "Daily quests" will be empty</Text>
+                }
                 <List>
                     <ListItem
                         title="PvE"
