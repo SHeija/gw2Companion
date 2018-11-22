@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert, ScrollView } from 'react-native';
+import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
 import { getData } from '../Data/ApiHelper';
 
@@ -7,45 +7,7 @@ export default class DailyQuests extends React.Component {
     
     constructor(props){
         super(props);
-        this.state = {data:
-            {
-                "pve": [
-                  {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                  },
-                ],
-                "pvp": [
-                  {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                  },
-                ],
-                "wvw": [
-                    {
-                      "id": 0,
-                      "level": { "min": 1, "max": 80 },
-                      "required_access": ["GuildWars2"]
-                    },
-                ],
-                "fractals": [
-                {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                },
-                ],
-                "special": [
-                {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                },
-                ],
-            }
-        }
+        this.state = {settings : {}, data:{},  loading:true, }
     }
 
     /*
@@ -69,90 +31,125 @@ export default class DailyQuests extends React.Component {
 
     }
   
-    async componentDidMount (){
-       
+    updateList = async () => {
+
         //fetching today's quest ids
         const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
         const data_ids = await getData(Dailyurl);
         
         //creating a temporary copy of this.state.data and inserting info
-        let data = this.state.data;
+        
+        let data = {};
         data.pve = await this.getInfo(data_ids.pve);
         data.pvp = await this.getInfo(data_ids.pvp);
         data.wvw = await this.getInfo(data_ids.wvw);
         data.fractals = await this.getInfo(data_ids.fractals);
         data.special = await this.getInfo(data_ids.special);
+        
 
         this.setState({
-            data:data
+            data:{...this.state.data, ...data}
+        },  () => {
+            this.setState({
+                loading:false
+            })
         })
-        
+
+    }
+
+    //Loads settings from asyncstorage
+    loadSettings = async () => {
+        try {
+          let settings = JSON.parse(await AsyncStorage.getItem('settings'));
+
+          if (settings != null){
+            this.setState({
+                settings:{...this.state.settings, ...settings}
+              });
+          }
+        }catch (error){
+          Alert.alert('Error reading data');
+        }
+    }
+
+    componentDidMount (){
+
+        this.loadSettings();
+        this.updateList();   
 
     }
     
    
     render () {
-        return (
-            <View>
-                <ScrollView>
-                    <List>
-                        {
-                            this.state.data.pve.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-                            />
-                            ))
-                        }
-                    </List>
-                    <List>
-                        {
-                            this.state.data.pvp.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-
-                            />
-                            ))
-                        }
-                    </List>
-                    <List>
-                        {
-                            this.state.data.wvw.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-
-                            />
-                            ))
-                        }
-                    </List>
-                    <List>
-                        {
-                            this.state.data.fractals.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-
-                            />
-                            ))
-                        }
-                    </List>
-                </ScrollView>
-            </View>
-        );
+        if (this.state.loading){
+            return (
+                <View><Text>Loading!</Text></View>
+            )
+        }else {
+            return (
+                <View>
+                    <ScrollView>
+                        <Text>{JSON.stringify(this.state.settings)}</Text>
+                        <List>
+                            {
+                                this.state.data.pve.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+                                />
+                                ))
+                            }
+                        </List>
+                        <List>
+                            {
+                                this.state.data.pvp.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+    
+                                />
+                                ))
+                            }
+                        </List>
+                        <List>
+                            {
+                                this.state.data.wvw.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+    
+                                />
+                                ))
+                            }
+                        </List>
+                        <List>
+                            {
+                                this.state.data.fractals.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+    
+                                />
+                                ))
+                            }
+                        </List>
+                    </ScrollView>
+                </View>
+            );
+        }
+        
     }
         
 }

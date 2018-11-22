@@ -6,7 +6,7 @@ import { Button, List, ListItem } from 'react-native-elements';
 export default class Settings extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { settings: {"GuildWars2":false, "HeartOfThorns":false, "PathOfFire":false}, basic:true, HoT:true, PoF:true };
+        this.state = { settings: {}, basic:true, HoT:true, PoF:true, pve:true, pvp:true, wvw:true, fractals:true };
     }
 
     componentDidMount(){
@@ -42,9 +42,9 @@ export default class Settings extends React.Component {
         }
     }
 
-    //formats settings into a string
+    //formats settings into a Json
     saveOnPress = () => {
-        let settings = {"GuildWars2":false, "HeartOfThorns":false, "PathOfFire":false};
+        let settings = {"GuildWars2":false, "HeartOfThorns":false, "PathOfFire":false, "pve":false, "pvp":false, "wvw":false, "fractals":false};
 
         if (this.state.basic){
             settings["GuildWars2"] = true;
@@ -55,9 +55,21 @@ export default class Settings extends React.Component {
         if (this.state.PoF){
             settings["PathOfFire"] = true;
         }
+        if (this.state.pve){
+            settings["pve"] = true;
+        }
+        if (this.state.pvp){
+            settings["pvp"] = true;
+        }
+        if (this.state.wvw){
+            settings["wvw"] = true;
+        }
+        if (this.state.fractals){
+            settings["fractals"] = true;
+        }
 
         this.setState({
-            settings:settings
+            settings:{...this.state.settings, ...settings}
         }, () => {
             this.saveSettings();
         });   
@@ -101,6 +113,55 @@ export default class Settings extends React.Component {
                         onSwitch = {(value) => {
                             this.setState(previousState => {
                               return {...previousState,PoF: value}
+                            })
+                          }}
+                    />
+                    
+                </List>
+                <Text>Selected Content:</Text>
+
+                <List>
+                    <ListItem
+                        title="PvE"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.pve}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,pve: value}
+                            })
+                          }}
+                    />
+                     <ListItem
+                        title="PvP"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.pvp}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,pvp: value}
+                            })
+                          }}
+                    />
+                     <ListItem
+                        title="WvW"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.wvw}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,wvw: value}
+                            })
+                          }}
+                    />
+                    <ListItem
+                        title="Fractals"
+                        hideChevron
+                        switchButton
+                        switched = {this.state.fractals}
+                        onSwitch = {(value) => {
+                            this.setState(previousState => {
+                              return {...previousState,fractals: value}
                             })
                           }}
                     />
