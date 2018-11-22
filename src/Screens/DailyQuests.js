@@ -89,8 +89,8 @@ export default class DailyQuests extends React.Component {
             return (
                 <View>
                     <ScrollView>
-                        <Text>{JSON.stringify(this.state.settings)}</Text>
-                        <List>
+                        {this.state.settings.pve ?
+                            <List>
                             {
                                 this.state.data.pve.map((item) => (
                                 <ListItem
@@ -102,8 +102,12 @@ export default class DailyQuests extends React.Component {
                                 />
                                 ))
                             }
-                        </List>
-                        <List>
+                            </List>
+                            :
+                            <View></View>
+                        }
+                        {this.state.settings.pvp ?
+                            <List>
                             {
                                 this.state.data.pvp.map((item) => (
                                 <ListItem
@@ -116,8 +120,12 @@ export default class DailyQuests extends React.Component {
                                 />
                                 ))
                             }
-                        </List>
-                        <List>
+                            </List>
+                            :
+                            <View></View>
+                        }
+                        {this.state.settings.wvw ?
+                            <List>
                             {
                                 this.state.data.wvw.map((item) => (
                                 <ListItem
@@ -130,21 +138,29 @@ export default class DailyQuests extends React.Component {
                                 />
                                 ))
                             }
-                        </List>
-                        <List>
-                            {
-                                this.state.data.fractals.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-    
-                                />
-                                ))
-                            }
-                        </List>
+                            </List>
+                            :
+                            <View></View>
+                        }
+                        {this.state.settings.fractals ?
+                             <List>
+                             {
+                                 this.state.data.fractals.map((item) => (
+                                 <ListItem
+                                     key={item.id}
+                                     title={item.name}
+                                     subtitle={item.requirement}
+                                     subtitleNumberOfLines = {5}
+                                     hideChevron
+     
+                                 />
+                                 ))
+                             }
+                            </List>
+                            :
+                            <View></View>
+                        }
+                       
                     </ScrollView>
                 </View>
             );

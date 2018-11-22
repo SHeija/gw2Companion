@@ -22,7 +22,11 @@ export default class Settings extends React.Component {
             this.setState({
                 basic:settings["GuildWars2"],
                 HoT:settings["HeartOfThorns"],
-                PoF:settings["PathOfFire"]
+                PoF:settings["PathOfFire"],
+                pve:settings["pve"],
+                pvp:settings["pvp"],
+                pvp:settings["wvw"],
+                fractals:settings["fractals"]
               });
           }
         }catch (error){
