@@ -85,6 +85,7 @@ export default class DailyQuests extends React.Component {
             return (
                 <View><Text>Loading!</Text></View>
             )
+        
         }else {
             return (
                 <View>

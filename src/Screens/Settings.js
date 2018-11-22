@@ -6,11 +6,22 @@ import { Button, List, ListItem } from 'react-native-elements';
 export default class Settings extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { settings: {}, basic:true, HoT:true, PoF:true, pve:true, pvp:true, wvw:true, fractals:true };
+        this.state = { 
+            settings: {},
+            basic:true, HoT:true, PoF:true, pve:true, pvp:true, wvw:true, fractals:true //switches
+        };
     }
 
     componentDidMount(){
-        this.loadSettings();
+        this.loadSettings()
+        .then(()=>{
+            if (this.state.settings = null){ //if settings = null, turn everything on
+                const settings = { "basic":true, "HoT":true, "PoF":true, "pve":true, "pvp":true, "wvw":true, "fractals":true}
+                this.setState({
+                    settings:settings
+                });
+            }
+        });
     }
 
     //Loads settings from asyncstorage
@@ -25,7 +36,7 @@ export default class Settings extends React.Component {
                 PoF:settings["PathOfFire"],
                 pve:settings["pve"],
                 pvp:settings["pvp"],
-                pvp:settings["wvw"],
+                wvw:settings["wvw"],
                 fractals:settings["fractals"]
               });
           }
