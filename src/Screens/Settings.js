@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert, AsyncStorage } from 'react-native';
+import { View, Text, Alert, AsyncStorage, ToastAndroid } from 'react-native';
 import { Button, List, ListItem } from 'react-native-elements';
 
 
@@ -20,6 +20,7 @@ export default class Settings extends React.Component {
                 this.setState({
                     settings:settings
                 });
+                this.saveSettings();
             }
         });
 
@@ -56,6 +57,7 @@ export default class Settings extends React.Component {
        
         try {
             await AsyncStorage.setItem('settings', settings);
+            ToastAndroid.show('Settings saved successfully', ToastAndroid.SHORT);
         }catch (error){
             Alert.alert('Error writing data');
         }
