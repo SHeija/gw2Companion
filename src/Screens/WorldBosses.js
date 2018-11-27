@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Alert,} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert, RefreshControl} from 'react-native';
 import { List, ListItem, } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
 
@@ -8,7 +8,7 @@ export default class WorldBosses extends React.Component {
     constructor(props){
         super(props);
         this.schedule = schedule;
-        this.state = {data:schedule}
+        this.state = {data:schedule, refreshing:false}
     }
 
     static navigationOptions = {
@@ -17,6 +17,11 @@ export default class WorldBosses extends React.Component {
     
     componentDidMount () {
         this.updateList();
+
+        this.props.navigation.addListener("didFocus", () => {
+            this.updateList();
+        });
+
     }
 
     updateList = () => {
@@ -26,19 +31,18 @@ export default class WorldBosses extends React.Component {
 
         for (let i = 0; i<Object.keys(this.schedule).length; i++){
 
-            //const time = this.schedule[i].Time.split(".");
             const hours = parseInt(this.schedule[i].Hours);
             const minutes = parseInt(this.schedule[i].Minutes);
             
-            if (date.getUTCHours() == hours && date.getUTCMinutes() <= minutes){
-                
+            if (date.getUTCHours() == hours && date.getUTCMinutes() < minutes){
+                //pushing current and next 5 to temp
                 temp.push(this.schedule[i-1]);
                 for (let j = 0; j<5; j++){
                     temp.push(this.schedule[i+j]);
                 }
                 break
             }else if (date.getUTCHours() == hours && date.getUTCMinutes() > 45 && minutes == 45) {
-
+                //same, but for the last quarter
                 for (let j = 0; j<7; j++){
                     temp.push(this.schedule[i+j]);
                 }
@@ -54,6 +58,16 @@ export default class WorldBosses extends React.Component {
         
     }
 
+    onRefresh = () => {
+        this.setState({
+            refreshing: true
+        });
+        this.updateList();
+        this.setState({
+            refreshing:false
+        });
+    }
+
     render () {
 
         const date = new Date();
@@ -62,8 +76,15 @@ export default class WorldBosses extends React.Component {
         return (
             <View>
                
-                    
-                <ScrollView>
+                
+                <ScrollView
+                    refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.onRefresh}
+                    />
+                    }
+                >
                     <List>
                         {
                             this.state.data.map((item) => (

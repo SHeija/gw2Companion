@@ -35,15 +35,13 @@ export default class DailyQuests extends React.Component {
         const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
         const data_ids = await getData(Dailyurl);
         
-        //creating a temporary copy of this.state.data and inserting info
-        
+        //fetching quest info one by one
         let data = {};
         data.pve = await this.getInfo(data_ids.pve);
         data.pvp = await this.getInfo(data_ids.pvp);
         data.wvw = await this.getInfo(data_ids.wvw);
         data.fractals = await this.getInfo(data_ids.fractals);
         data.special = await this.getInfo(data_ids.special);
-        
 
         this.setState({
             data:{...this.state.data, ...data}
