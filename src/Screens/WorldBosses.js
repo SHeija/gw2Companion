@@ -7,8 +7,8 @@ export default class WorldBosses extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {data:schedule}
         this.schedule = schedule;
+        this.state = {data:schedule}
     }
 
     static navigationOptions = {
@@ -22,18 +22,18 @@ export default class WorldBosses extends React.Component {
     updateList = () => {
         
         const date = new Date();
-        //let timezoneOffset = date.getTimezoneOffset/60; //in hours
         const temp = [];
 
         for (let i = 0; i<Object.keys(this.schedule).length; i++){
 
-            const time = this.schedule[i].Time.split(".");
-            const hours = parseInt(time[0]);
-            const minutes = parseInt(time[1]);
+            //const time = this.schedule[i].Time.split(".");
+            const hours = parseInt(this.schedule[i].Hours);
+            const minutes = parseInt(this.schedule[i].Minutes);
             
             if (date.getUTCHours() == hours && date.getUTCMinutes() <= minutes){
+                
                 temp.push(this.schedule[i-1]);
-                for (let j = 0; j<7; j++){
+                for (let j = 0; j<5; j++){
                     temp.push(this.schedule[i+j]);
                 }
                 break
@@ -55,6 +55,10 @@ export default class WorldBosses extends React.Component {
     }
 
     render () {
+
+        const date = new Date();
+        const timezoneOffset = parseInt(date.getTimezoneOffset()/-60); //in hours
+
         return (
             <View>
                
@@ -64,9 +68,9 @@ export default class WorldBosses extends React.Component {
                         {
                             this.state.data.map((item) => (
                             <ListItem
-                                key={item.Time+item.Boss}
+                                key={item.Hours+item.Boss}
                                 title={item.Boss}
-                                subtitle={item.Time+" "+item.Zone}
+                                subtitle={(parseInt(item.Hours)+timezoneOffset)+":"+item.Minutes}
                             />
                             ))
                         }
