@@ -10,11 +10,9 @@ export default class DailyQuests extends React.Component {
         this.state = {settings : {}, data:{},  loading:true, }
     }
 
-    /*
-    datasta erotetaan taulu, jossa id:t
-    id:t annetaan https://api.guildwars2.com/v2/achievements?ids=1,2,3 paremetrina -> objekti, jossa questien varsinaiset tiedot
-    mapataan listaan
-        */
+    static navigationOptions = {
+        title: 'Daily Quests',
+      };
 
     getInfo = (object) => {
         //object = the "category" being fetched, e.g "pvp"
