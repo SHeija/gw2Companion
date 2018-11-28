@@ -3,6 +3,7 @@ import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
 
 import { getData } from '../Data/ApiHelper';
+import { getInfo } from '../Data/ApiHelper';
 
 
 
@@ -40,10 +41,10 @@ export default class Commerce extends React.Component {
     updateData = async () => {
         //0642AC9B-83BC-424B-ACAE-1CF086593ACF40519FC7-C3AB-47BE-85D5-3113C0F99ADF
         const apiKey = this.state.apiKey;
-        const url =  'https://api.guildwars2.com/v2/commerce/delivery?access_token='+'0642AC9B-83BC-424B-ACAE-1CF086593ACF40519FC7-C3AB-47BE-85D5-3113C0F99ADF';
+        const url =  'https://api.guildwars2.com/v2/commerce/delivery?access_token='+apiKey;
         const delivery = await getData(url);
         
-        const items = await this.getInfo(delivery.items);
+        const items = await getInfo(delivery.items, 'https://api.guildwars2.com/v2/items?ids=');
         delivery["items"]= items;
         this.setState({
             delivery: {...this.state.delivery, ...delivery},
@@ -53,20 +54,6 @@ export default class Commerce extends React.Component {
             });
         });
         
-    }
-
-    getInfo = (object) => {
-        //object = the "category" being fetched, e.g "pvp"
-        //separating ids
-        let idstring = '';
-        for (let i = 0; i<Object.keys(object).length; i++){
-            idstring = idstring + object[i].id +',';
-        }
-
-        //fetching today's quests based on id's
-        const url = 'https://api.guildwars2.com/v2/items?ids='+idstring
-        return getData(url);
-
     }
 
     render(){

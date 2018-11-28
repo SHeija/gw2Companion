@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
-import { getData } from '../Data/ApiHelper';
+import { getData, getInfo } from '../Data/ApiHelper';
+
 
 export default class DailyQuests extends React.Component {
     
@@ -13,21 +14,6 @@ export default class DailyQuests extends React.Component {
     static navigationOptions = {
         title: 'Daily Quests',
       };
-
-    getInfo = (object) => {
-        //object = the "category" being fetched, e.g "pvp"
-        //separating ids
-        let idstring = '';
-        for (let i = 0; i<Object.keys(object).length; i++){
-            idstring = idstring + object[i].id +',';
-        }
-
-        //fetching today's quests based on id's
-
-        const url = 'https://api.guildwars2.com/v2/achievements?ids='+idstring
-        return getData(url);
-
-    }
   
     updateList = async () => {
 
@@ -35,13 +21,14 @@ export default class DailyQuests extends React.Component {
         const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
         const data_ids = await getData(Dailyurl);
         
-        //fetching quest info one by one
+        //fetching quest info, category at time
         let data = {};
-        data.pve = await this.getInfo(data_ids.pve);
-        data.pvp = await this.getInfo(data_ids.pvp);
-        data.wvw = await this.getInfo(data_ids.wvw);
-        data.fractals = await this.getInfo(data_ids.fractals);
-        data.special = await this.getInfo(data_ids.special);
+        const endpoint = 'https://api.guildwars2.com/v2/achievements?ids=';
+        data.pve = await getInfo(data_ids.pve, endpoint);
+        data.pvp = await getInfo(data_ids.pvp, endpoint);
+        data.wvw = await getInfo(data_ids.wvw, endpoint);
+        data.fractals = await getInfo(data_ids.fractals, endpoint);
+        data.special = await getInfo(data_ids.special, endpoint);
 
         this.setState({
             data:{...this.state.data, ...data}

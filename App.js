@@ -5,8 +5,9 @@ import DailyQuests from './src/Screens/DailyQuests';
 import Settings from './src/Screens/Settings';
 import Commerce from './src/Screens/Commerce';
 
-//topbar navigator inside a stack navigator
+console.disableYellowBox = true;
 
+//topbar navigator inside a stack navigator
 const RootStack = createStackNavigator({
   MyTab: {
     screen: createMaterialTopTabNavigator({ 
@@ -23,8 +24,9 @@ const RootStack = createStackNavigator({
 })
 
 
-
 export default class App extends React.Component {
+
+  
 
   render () {
     return (
