@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert, AsyncStorage, ToastAndroid, ScrollView } from 'react-native';
+import { View, Text, Alert, AsyncStorage, ToastAndroid, ScrollView, TextInput } from 'react-native';
 import { Button, List, ListItem } from 'react-native-elements';
 
 
@@ -8,6 +8,7 @@ export default class Settings extends React.Component {
         super(props);
         this.state = { 
             settings: {},
+            apiKey: "",
             basic:true, HoT:true, PoF:true, pve:true, pvp:true, wvw:true, fractals:true //switches
         };
     }
@@ -19,8 +20,10 @@ export default class Settings extends React.Component {
                 const settings = { "basic":true, "HoT":true, "PoF":true, "pve":true, "pvp":true, "wvw":true, "fractals":true}
                 this.setState({
                     settings:settings
+                }, () => {
+                    this.saveSettings();
                 });
-                this.saveSettings();
+               
             }
         });
 
@@ -42,11 +45,22 @@ export default class Settings extends React.Component {
                 pve:settings["pve"],
                 pvp:settings["pvp"],
                 wvw:settings["wvw"],
-                fractals:settings["fractals"]
+                fractals:settings["fractals"],
               });
           }
         }catch (error){
-          Alert.alert('Error reading data');
+          Alert.alert('Error reading settings');
+        }
+
+        try {
+            let apiKey = await AsyncStorage.getItem('apikey');
+            if (apiKey != null){
+                this.setState({
+                    apiKey:apiKey
+                })
+            }
+        }catch(error){
+            Alert.alert('Error reading apikey')
         }
     }
 
@@ -54,9 +68,11 @@ export default class Settings extends React.Component {
     saveSettings = async () => {
        
         const settings = JSON.stringify(this.state.settings);
+        const apiKey = this.state.apiKey;
        
         try {
             await AsyncStorage.setItem('settings', settings);
+            await AsyncStorage.setItem('apikey', apiKey);
             ToastAndroid.show('Settings saved successfully', ToastAndroid.SHORT);
         }catch (error){
             Alert.alert('Error writing data');
@@ -102,6 +118,12 @@ export default class Settings extends React.Component {
         return (
             <View>
                 <ScrollView>
+                    <Text>Api Key:</Text>
+                    <TextInput
+                        onChangeText={(apiKey) => this.setState({apiKey})}
+                        value={this.state.apiKey}
+                    />
+                    {/* 
                     <Text>Selected expansions:</Text>
                     { !this.state.basic && !this.state.HoT && !this.state.PoF && 
                         <Text>Note: if nothing is selected, "World bosses" will be empty</Text>
@@ -142,6 +164,7 @@ export default class Settings extends React.Component {
                         />
                         
                     </List>
+                    */}
                     <Text>Selected Content:</Text>
                     { !this.state.pve && !this.state.pvp && !this.state.wvw && !this.state.fractals && 
                         <Text>Note: if nothing is selected, "Daily quests" will be empty</Text>

@@ -92,6 +92,7 @@ export default class WorldBosses extends React.Component {
                                 key={item.Hours+item.Boss}
                                 title={item.Boss}
                                 subtitle={(parseInt(item.Hours)+timezoneOffset)+":"+item.Minutes}
+                                hideChevron
                             />
                             ))
                         }

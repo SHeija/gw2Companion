@@ -15,5 +15,3 @@ export function getData (url) {
     return result;
 
 }
-       
-
