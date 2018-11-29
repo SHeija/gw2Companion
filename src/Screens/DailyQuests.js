@@ -15,6 +15,23 @@ export default class DailyQuests extends React.Component {
         title: 'Daily Quests',
       };
   
+    componentDidMount (){
+
+        this.loadSettings()
+        .then(() => {
+            this.updateList();   
+        });  
+
+        //stuff is re-loaded when screen is navigated to
+        this.props.navigation.addListener("didFocus", () => {
+            this.loadSettings()
+            .then(() => {
+                this.updateList();   
+            });
+        });
+
+    }
+
     updateList = async () => {
 
         //fetching today's quest ids
@@ -55,18 +72,7 @@ export default class DailyQuests extends React.Component {
         }
     }
 
-    componentDidMount (){
-
-        this.loadSettings();
-        this.updateList();   
-
-        //stuff is re-loaded when screen is navigated to
-        this.props.navigation.addListener("didFocus", () => {
-            this.loadSettings();
-            this.updateList();   
-        });
-
-    }
+    
     
    
     render () {

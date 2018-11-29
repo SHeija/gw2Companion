@@ -40,7 +40,9 @@ export default class Commerce extends React.Component {
 
     updateData = async () => {
 
+        //testKey:
         //0642AC9B-83BC-424B-ACAE-1CF086593ACF40519FC7-C3AB-47BE-85D5-3113C0F99ADF
+        
         //check if the key is valid
         const apiKey = this.state.apiKey;
         const apiKeyCheckUrl = 'https://api.guildwars2.com/v2/tokeninfo?access_token='+apiKey;
