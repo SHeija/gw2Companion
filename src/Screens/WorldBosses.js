@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Alert, RefreshControl} from 'react-native';
-import { List, ListItem, } from 'react-native-elements'
+import { List, ListItem, Card } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
 
 export default class WorldBosses extends React.Component {
@@ -91,7 +91,9 @@ export default class WorldBosses extends React.Component {
                         />
                         }
                     >
-                        <List>
+                        <Card
+                            title="World Bosses"
+                        >
                             {
                                 this.state.data.map((item) => (
                                 <ListItem
@@ -102,7 +104,7 @@ export default class WorldBosses extends React.Component {
                                 />
                                 ))
                             }
-                        </List>
+                        </Card>
                     </ScrollView>
                 </View>
             );
