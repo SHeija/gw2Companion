@@ -19,8 +19,7 @@ export default class Commerce extends React.Component {
         this.props.navigation.addListener("didFocus", () => {
             this.setState({
                 loading:true,
-                //nukes previous data if apiKey was changed
-                apiKey: "",
+                apiKey: "", //nukes previous data if apiKey was changed
                 delivery: {},
                 wallet: {},
             });
@@ -113,13 +112,21 @@ export default class Commerce extends React.Component {
         }
         return wallet;
     }
+    
+    getGSC = (value) => {
+        
+        //Looks stupid, works
+        const gold = parseInt(value/100/100);
+        const silver = parseInt((value/100/100-gold)*100);
+        const copper = parseInt(((value/100/100-gold)*100-silver)*100);
+
+        return gold+" gold, "+silver+" silver, "+copper+" copper";
+
+    }
 
     render(){
 
-        //Looks stupid, works
-        const gold = parseInt(this.state.delivery.coins/100/100);
-        const silver = parseInt((this.state.delivery.coins/100/100-gold)*100);
-        const copper = parseInt(((this.state.delivery.coins/100/100-gold)*100-silver)*100);
+       
         
         if (this.state.apiKey == null || this.state.apiKey == ""){
             return(
@@ -145,7 +152,7 @@ export default class Commerce extends React.Component {
                         <Text>Waiting for Pickup</Text>
                         <View>
                             <Text>Coins:</Text>
-                            <Text> {gold} gold, {silver} silver, {copper} copper</Text>
+                            <Text>{this.getGSC(this.state.delivery.coins)}</Text>
                         </View>
                         <View>
                             <Text>Items:</Text>
@@ -168,10 +175,11 @@ export default class Commerce extends React.Component {
                         <List>
                         {
                                     this.state.wallet.map((item) => (
+                                    
                                         <ListItem
                                             key={item.id}
                                             title={item.name}
-                                            subtitle={item.value}
+                                            subtitle={item.name == "Coin" ? this.getGSC(item.value) : item.value}
                                             leftAvatar={{ source: { uri: item.icon } }}
                                             subtitleNumberOfLines = {5}
                                             hideChevron

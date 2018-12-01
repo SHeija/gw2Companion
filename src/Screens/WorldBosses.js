@@ -8,7 +8,7 @@ export default class WorldBosses extends React.Component {
     constructor(props){
         super(props);
         this.schedule = schedule;
-        this.state = {data:schedule, refreshing:false}
+        this.state = {data:schedule, refreshing:false, loading:true}
     }
 
     static navigationOptions = {
@@ -54,6 +54,7 @@ export default class WorldBosses extends React.Component {
         
         this.setState({
             data: temp,
+            loading: false
         });
         
     }
@@ -73,33 +74,40 @@ export default class WorldBosses extends React.Component {
         const date = new Date();
         const timezoneOffset = parseInt(date.getTimezoneOffset()/-60); //in hours
 
-        return (
-            <View>
-               
-                
-                <ScrollView
-                    refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this.onRefresh}
-                    />
-                    }
-                >
-                    <List>
-                        {
-                            this.state.data.map((item) => (
-                            <ListItem
-                                key={item.Hours+item.Boss}
-                                title={item.Boss}
-                                subtitle={(parseInt(item.Hours)+timezoneOffset)+":"+item.Minutes}
-                                hideChevron
-                            />
-                            ))
+        if (this.state.loading){
+            return(
+                <View><Text>Loading!</Text></View>
+            );
+        }else{
+            return (
+                <View>
+                   
+                    
+                    <ScrollView
+                        refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.onRefresh}
+                        />
                         }
-                    </List>
-                </ScrollView>
-            </View>
-        );
+                    >
+                        <List>
+                            {
+                                this.state.data.map((item) => (
+                                <ListItem
+                                    key={item.Hours+item.Boss}
+                                    title={item.Boss}
+                                    subtitle={(parseInt(item.Hours)+timezoneOffset)+":"+item.Minutes}
+                                    hideChevron
+                                />
+                                ))
+                            }
+                        </List>
+                    </ScrollView>
+                </View>
+            );
+        }
+       
     }
 
 }
