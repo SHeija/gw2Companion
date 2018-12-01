@@ -1,176 +1,173 @@
 import React from 'react';
-import { View, Text, Alert, ScrollView } from 'react-native';
+import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
-import { helper } from '../Data/ApiHelper';
+import { getData, getInfo } from '../Data/ApiHelper';
+
 
 export default class DailyQuests extends React.Component {
     
     constructor(props){
         super(props);
-        this.state = {data:
-            {
-                "pve": [
-                  {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                  },
-                ],
-                "pvp": [
-                  {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                  },
-                ],
-                "wvw": [
-                    {
-                      "id": 0,
-                      "level": { "min": 1, "max": 80 },
-                      "required_access": ["GuildWars2"]
-                    },
-                ],
-                "fractals": [
-                {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                },
-                ],
-                "special": [
-                {
-                    "id": 0,
-                    "level": { "min": 1, "max": 80 },
-                    "required_access": ["GuildWars2"]
-                },
-                ],
-            }
-        }
+        this.state = {settings : {}, data:{},  loading:true, }
     }
 
-    /*
-    datasta erotetaan taulu, jossa id:t
-    id:t annetaan https://api.guildwars2.com/v2/achievements?ids=1,2,3 paremetrina -> objekti, jossa questien varsinaiset tiedot
-    mapataan listaan
-    */
-
-    getData = (url) => {
-
-        let result = fetch(url)
-            .then((response) => response.json())
-            .then((responseJson) => { 
-                return responseJson
-            })
-
-            .catch((error) => { 
-                Alert.alert(error);
-            });
-        
-        
-        return result;
-
-    }
-
-    getInfo = (object) => {
-
-        //separating ids
-        let idstring = '';
-        for (let i = 0; i<Object.keys(object).length; i++){
-            idstring = idstring + object[i].id +',';
-        }
-
-        //fetching today's quests based on id's, in the 
-
-        const url = 'https://api.guildwars2.com/v2/achievements?ids='+idstring
-        return this.getData(url);
-
-    }
+    static navigationOptions = {
+        title: 'Daily Quests',
+      };
   
-    async componentDidMount (){
-       
+    componentDidMount (){
+
+        this.loadSettings()
+        .then(() => {
+            this.updateList();   
+        });  
+
+        //stuff is re-loaded when screen is navigated to
+        this.props.navigation.addListener("didFocus", () => {
+            this.loadSettings()
+            .then(() => {
+                this.updateList();   
+            });
+        });
+
+    }
+
+    updateList = async () => {
+
         //fetching today's quest ids
         const Dailyurl = 'https://api.guildwars2.com/v2/achievements/daily';
-        const data_ids = await this.getData(Dailyurl);
+        const data_ids = await getData(Dailyurl);
         
-        //creating a temporary copy of this.state.data and inserting info
-        let data = this.state.data;
-        data.pve = await this.getInfo(data_ids.pve);
-        data.pvp = await this.getInfo(data_ids.pvp);
-        data.wvw = await this.getInfo(data_ids.wvw);
-        data.fractals = await this.getInfo(data_ids.fractals);
-        data.special = await this.getInfo(data_ids.special);
+        //fetching quest info, category at time
+        let data = {};
+        const endpoint = 'https://api.guildwars2.com/v2/achievements?ids=';
+        data.pve = await getInfo(data_ids.pve, endpoint);
+        data.pvp = await getInfo(data_ids.pvp, endpoint);
+        data.wvw = await getInfo(data_ids.wvw, endpoint);
+        data.fractals = await getInfo(data_ids.fractals, endpoint);
+        data.special = await getInfo(data_ids.special, endpoint);
 
         this.setState({
-            data:data
+            data:{...this.state.data, ...data}
+        },  () => {
+            this.setState({
+                loading:false
+            })
         })
-        
 
     }
+
+    //Loads settings from asyncstorage
+    loadSettings = async () => {
+        try {
+          let settings = JSON.parse(await AsyncStorage.getItem('settings'));
+
+          if (settings != null){
+            this.setState({
+                settings:{...this.state.settings, ...settings}
+              });
+          }
+        }catch (error){
+          Alert.alert('Error reading data');
+        }
+    }
+
+    
     
    
     render () {
-        return (
-            <View>
-                <ScrollView>
-                    <List>
-                        {
-                            this.state.data.pve.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-                            />
-                            ))
+        if (this.state.loading){
+            return (
+                <View><Text>Loading!</Text></View>
+            )
+        }else if (!this.state.settings.pve && !this.state.settings.pvp && !this.state.settings.wvw && !this.state.settings.fractals ){
+            return (
+                <View>
+                    <Text>No content selected - go enable something in the settings</Text>
+                </View>
+            )
+        
+        }else {
+            return (
+                <View>
+                    <ScrollView>
+                        {this.state.settings.pve ?
+                            <List>
+                            {
+                                this.state.data.pve.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+                                />
+                                ))
+                            }
+                            </List>
+                            :
+                            <View></View>
                         }
-                    </List>
-                    <List>
-                        {
-                            this.state.data.pvp.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-
-                            />
-                            ))
+                        {this.state.settings.pvp ?
+                            <List>
+                            {
+                                this.state.data.pvp.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+    
+                                />
+                                ))
+                            }
+                            </List>
+                            :
+                            <View></View>
                         }
-                    </List>
-                    <List>
-                        {
-                            this.state.data.wvw.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-
-                            />
-                            ))
+                        {this.state.settings.wvw ?
+                            <List>
+                            {
+                                this.state.data.wvw.map((item) => (
+                                <ListItem
+                                    key={item.id}
+                                    title={item.name}
+                                    subtitle={item.requirement}
+                                    subtitleNumberOfLines = {5}
+                                    hideChevron
+    
+                                />
+                                ))
+                            }
+                            </List>
+                            :
+                            <View></View>
                         }
-                    </List>
-                    <List>
-                        {
-                            this.state.data.fractals.map((item) => (
-                            <ListItem
-                                key={item.id}
-                                title={item.name}
-                                subtitle={item.requirement}
-                                subtitleNumberOfLines = {5}
-                                hideChevron
-
-                            />
-                            ))
+                        {this.state.settings.fractals ?
+                             <List>
+                             {
+                                 this.state.data.fractals.map((item) => (
+                                 <ListItem
+                                     key={item.id}
+                                     title={item.name}
+                                     subtitle={item.requirement}
+                                     subtitleNumberOfLines = {5}
+                                     hideChevron
+     
+                                 />
+                                 ))
+                             }
+                            </List>
+                            :
+                            <View></View>
                         }
-                    </List>
-                </ScrollView>
-            </View>
-        );
+                       
+                    </ScrollView>
+                </View>
+            );
+        }
+        
     }
         
 }
-
