@@ -1,686 +1,914 @@
 [
  {
-   "Time": "0.00.00",
+   "Hours": "0",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "0.00.00",
+   "Hours": "0",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Tequatl the Sunless",
    "Type": "Hardcore"
  },
  {
-   "Time": "0.15.00",
+   "Hours": "0",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "0.30.00",
+   "Hours": "0",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "0.45.00",
+   "Hours": "0",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "1.00.00",
+   "Hours": "1",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "1.00.00",
+   "Hours": "1",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Evolved Jungle Wurm",
    "Type": "Hardcore"
  },
  {
-   "Time": "1.15.00",
+   "Hours": "1",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "1.30.00",
+   "Hours": "1",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "1.45.00",
+   "Hours": "1",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "2.00.00",
+   "Hours": "2",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "2.00.00",
+   "Hours": "2",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Karka Queen",
    "Type": "Hardcore"
  },
  {
-   "Time": "2.15.00",
+   "Hours": "2",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "2.30.00",
+   "Hours": "2",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "2.45.00",
+   "Hours": "2",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "3.00.00",
+   "Hours": "3",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "3.00.00",
+   "Hours": "3",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Tequatl the Sunless",
    "Type": "Hardcore"
  },
  {
-   "Time": "3.15.00",
+   "Hours": "3",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "3.30.00",
+   "Hours": "3",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "3.45.00",
+   "Hours": "3",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "4.00.00",
+   "Hours": "4",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "4.00.00",
+   "Hours": "4",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Evolved Jungle Wurm",
    "Type": "Hardcore"
  },
  {
-   "Time": "4.15.00",
+   "Hours": "4",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "4.30.00",
+   "Hours": "4",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "4.45.00",
+   "Hours": "4",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "5.00.00",
+   "Hours": "5",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "5.15.00",
+   "Hours": "5",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "5.30.00",
+   "Hours": "5",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "5.45.00",
+   "Hours": "5",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "6.00.00",
+   "Hours": "6",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "6.00.00",
+   "Hours": "6",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Karka Queen",
    "Type": "Hardcore"
  },
  {
-   "Time": "6.15.00",
+   "Hours": "6",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "6.30.00",
+   "Hours": "6",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "6.45.00",
+   "Hours": "6",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "7.00.00",
+   "Hours": "7",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "7.00.00",
+   "Hours": "7",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Tequatl the Sunless",
    "Type": "Hardcore"
  },
  {
-   "Time": "7.15.00",
+   "Hours": "7",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "7.30.00",
+   "Hours": "7",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "7.45.00",
+   "Hours": "7",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "8.00.00",
+   "Hours": "8",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "8.00.00",
+   "Hours": "8",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Evolved Jungle Wurm",
    "Type": "Hardcore"
  },
  {
-   "Time": "8.15.00",
+   "Hours": "8",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "8.30.00",
+   "Hours": "8",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "8.45.00",
+   "Hours": "8",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "9.00.00",
+   "Hours": "9",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "9.15.00",
+   "Hours": "9",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "9.30.00",
+   "Hours": "9",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "9.45.00",
+   "Hours": "9",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "10.00.00",
+   "Hours": "10",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "10.15.00",
+   "Hours": "10",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "10.30.00",
+   "Hours": "10",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "10.30.00",
+   "Hours": "10",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Karka Queen",
    "Type": "Hardcore"
  },
  {
-   "Time": "10.45.00",
+   "Hours": "10",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "11.00.00",
+   "Hours": "11",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "11.15.00",
+   "Hours": "11",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "11.30.00",
+   "Hours": "11",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "11.30.00",
+   "Hours": "11",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Tequatl the Sunless",
    "Type": "Hardcore"
  },
  {
-   "Time": "11.45.00",
+   "Hours": "11",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "12.00.00",
+   "Hours": "12",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "12.15.00",
+   "Hours": "12",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "12.30.00",
+   "Hours": "12",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "12.30.00",
+   "Hours": "12",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Evolved Jungle Wurm",
    "Type": "Hardcore"
  },
  {
-   "Time": "12.45.00",
+   "Hours": "12",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "13.00.00",
+   "Hours": "13",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "13.15.00",
+   "Hours": "13",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "13.30.00",
+   "Hours": "13",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "13.45.00",
+   "Hours": "13",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "14.00.00",
+   "Hours": "14",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "14.15.00",
+   "Hours": "14",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "14.30.00",
+   "Hours": "14",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "14.45.00",
+   "Hours": "14",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "15.00.00",
+   "Hours": "15",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "15.00.00",
+   "Hours": "15",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Karka Queen",
    "Type": "Hardcore"
  },
  {
-   "Time": "15.15.00",
+   "Hours": "15",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "15.30.00",
+   "Hours": "15",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "15.45.00",
+   "Hours": "15",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "16.00.00",
+   "Hours": "16",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "16.00.00",
+   "Hours": "16",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Tequatl the Sunless",
    "Type": "Hardcore"
  },
  {
-   "Time": "16.15.00",
+   "Hours": "16",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "16.30.00",
+   "Hours": "16",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "16.45.00",
+   "Hours": "16",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "17.00.00",
+   "Hours": "17",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "17.00.00",
+   "Hours": "17",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Evolved Jungle Wurm",
    "Type": "Hardcore"
  },
  {
-   "Time": "17.15.00",
+   "Hours": "17",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "17.30.00",
+   "Hours": "17",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "17.45.00",
+   "Hours": "17",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "18.00.00",
+   "Hours": "18",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "18.00.00",
+   "Hours": "18",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Karka Queen",
    "Type": "Hardcore"
  },
  {
-   "Time": "18.15.00",
+   "Hours": "18",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "18.30.00",
+   "Hours": "18",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "18.45.00",
+   "Hours": "18",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "19.00.00",
+   "Hours": "19",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "19.00.00",
+   "Hours": "19",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Tequatl the Sunless",
    "Type": "Hardcore"
  },
  {
-   "Time": "19.15.00",
+   "Hours": "19",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "19.30.00",
+   "Hours": "19",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "19.45.00",
+   "Hours": "19",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "20.00.00",
+   "Hours": "20",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "20.00.00",
+   "Hours": "20",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Evolved Jungle Wurm",
    "Type": "Hardcore"
  },
  {
-   "Time": "20.15.00",
+   "Hours": "20",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "20.30.00",
+   "Hours": "20",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "20.45.00",
+   "Hours": "20",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "21.00.00",
+   "Hours": "21",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Admiral Taidha Covington",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "21.15.00",
+   "Hours": "21",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "21.30.00",
+   "Hours": "21",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Megadestroyer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "21.45.00",
+   "Hours": "21",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "22.00.00",
+   "Hours": "22",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "The Shatterer",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "22.15.00",
+   "Hours": "22",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Svanir Shaman Chief",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "22.30.00",
+   "Hours": "22",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Modniir Ulgoth",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "22.45.00",
+   "Hours": "22",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Fire Elemental",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "23.00.00",
+   "Hours": "23",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Golem Mark II",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "23.00.00",
+   "Hours": "23",
+   "Minutes": "00",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Karka Queen",
    "Type": "Hardcore"
  },
  {
-   "Time": "23.15.00",
+   "Hours": "23",
+   "Minutes": "15",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Great Jungle Wurm",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "23.30.00",
+   "Hours": "23",
+   "Minutes": "30",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Claw of Jormag",
-   "Type": "Regular"
+   "Type": "Normal"
  },
  {
-   "Time": "23.45.00",
+   "Hours": "23",
+   "Minutes": "45",
+   "Seconds": "00",
    "Zone": "UTC+0",
    "Boss": "Shadow Behemoth",
-   "Type": "Regular"
+   "Type": "Normal"
  }
 ]
