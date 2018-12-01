@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
-import { List, ListItem, } from 'react-native-elements';
+import { List, ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo } from '../Data/ApiHelper';
 
 
@@ -72,8 +72,25 @@ export default class DailyQuests extends React.Component {
         }
     }
 
-    
-    
+    dataCard = (datasource, title) =>{
+        return(
+            <Card
+                title={title}
+            >
+                {
+                    datasource.map((item) => (
+                    <ListItem
+                        key={item.id}
+                        title={item.name}
+                        subtitle={item.requirement}
+                        subtitleNumberOfLines = {5}
+                        hideChevron
+                    />
+                    ))
+                }
+            </Card>
+        );
+    }
    
     render () {
         if (this.state.loading){
@@ -92,73 +109,22 @@ export default class DailyQuests extends React.Component {
                 <View>
                     <ScrollView>
                         {this.state.settings.pve ?
-                            <List>
-                            {
-                                this.state.data.pve.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-                                />
-                                ))
-                            }
-                            </List>
+                            this.dataCard(this.state.data.pve, "PvE")
                             :
                             <View></View>
                         }
                         {this.state.settings.pvp ?
-                            <List>
-                            {
-                                this.state.data.pvp.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-    
-                                />
-                                ))
-                            }
-                            </List>
+                            this.dataCard(this.state.data.pvp, "PvP")
                             :
                             <View></View>
                         }
                         {this.state.settings.wvw ?
-                            <List>
-                            {
-                                this.state.data.wvw.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-    
-                                />
-                                ))
-                            }
-                            </List>
+                            this.dataCard(this.state.data.wvw, "WvW")
                             :
                             <View></View>
                         }
                         {this.state.settings.fractals ?
-                             <List>
-                             {
-                                 this.state.data.fractals.map((item) => (
-                                 <ListItem
-                                     key={item.id}
-                                     title={item.name}
-                                     subtitle={item.requirement}
-                                     subtitleNumberOfLines = {5}
-                                     hideChevron
-     
-                                 />
-                                 ))
-                             }
-                            </List>
+                            this.dataCard(this.state.data.fractals, "Fractals")
                             :
                             <View></View>
                         }
