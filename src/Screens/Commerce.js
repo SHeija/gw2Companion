@@ -1,21 +1,29 @@
 import React from 'react';
 import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { List, ListItem, } from 'react-native-elements';
-import { getData, getInfo } from '../Data/ApiHelper';
+import { getData, getInfo, keyValidator, permissionValidator } from '../Data/ApiHelper';
 
 export default class Commerce extends React.Component {
     constructor(props){
         super(props);
-        this.state = { apiKey:"", delivery: {}, wallet:{}, loading:true, invalidKey:false};
+        this.state = { apiKey:"", delivery: {}, wallet:{}, loading:true, invalidKey:false, invalidPermission: false};
     }
 
     componentDidMount(){
+
         this.loadSettings()
         .then(() =>{
             this.updateData()
         });
 
         this.props.navigation.addListener("didFocus", () => {
+            this.setState({
+                loading:true,
+                //nukes previous data if apiKey was changed
+                apiKey: "",
+                delivery: {},
+                wallet: {},
+            });
             this.loadSettings()
             .then(() =>{
                 this.updateData()
@@ -45,27 +53,32 @@ export default class Commerce extends React.Component {
         
         //check if the key is valid
         const apiKey = this.state.apiKey;
-        const apiKeyCheckUrl = 'https://api.guildwars2.com/v2/tokeninfo?access_token='+apiKey;
-        let keyIsValid;
-        const apiKeyData = await getData(apiKeyCheckUrl);
-        if (apiKeyData.hasOwnProperty('id')){
-            keyIsValid=true;
-        }else{
-            keyIsValid=false;
-        } 
-
+        const keyIsValid = await keyValidator(apiKey, 'id');
+        const hasPermission = await permissionValidator(apiKey, 'wallet')
+       
         //attempt only if key is valid
         if (keyIsValid){
-            
-            const delivery = await this.getDelivery(apiKey);
-            const wallet = await this.getWallet(apiKey);
-            
             this.setState({
-                delivery: {...this.state.delivery, ...delivery},
-                wallet: wallet,
                 invalidKey: false,
-                loading: false
             });
+
+            if (hasPermission){
+                const delivery = await this.getDelivery(apiKey);
+                const wallet = await this.getWallet(apiKey);
+            
+                this.setState({
+                    delivery: {...this.state.delivery, ...delivery},
+                    wallet: wallet,
+                    invalidPermission: false,
+                    loading: false
+                });
+            }else{
+                this.setState({
+                    invalidPermission: true,
+                    loading: false
+                });
+            }
+            
         }else{
             this.setState({
                 invalidKey:true,
@@ -120,7 +133,12 @@ export default class Commerce extends React.Component {
             return(
                 <View><Text>Invalid API key</Text></View>
             );
-        }else{
+        }else if(this.state.invalidPermission){
+            return(
+                <View><Text>API key doesn't have permission: wallet</Text></View>
+            );
+        }
+        else{
             return(
                 <View>
                     <ScrollView>
