@@ -110,6 +110,8 @@ export default class Settings extends React.Component {
 
         return (
             <View>
+                <View style={styles.statusBar} />
+
                 <ScrollView>
                     <View
                         style = {styles.container}

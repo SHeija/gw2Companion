@@ -70,22 +70,44 @@ export default class WorldBosses extends React.Component {
         });
     }
 
-    render () {
-
+    bossCard = (datasource,title) => {
         const date = new Date();
         const timezoneOffset = parseInt(date.getTimezoneOffset()/-60); //in hours
 
+        return (
+            <Card
+                title={title}
+                containerStyle={styles.card}
+            >
+                {
+                    datasource.map((item) => (
+                    <ListItem
+                        key={item.Hours+item.Boss}
+                        title={item.Boss}
+                        subtitle={(parseInt(item.Hours)+timezoneOffset)+":"+item.Minutes}
+                        hideChevron
+                    />
+                    ))
+                }
+            </Card>
+        );
+
+    }
+
+    render () {
+
+        
+
         if (this.state.loading){
             return(
-                <View style={styles.loading}>        
-                    <ActivityIndicator size="large" color="#00ff00" />
+                <View style={[styles.loading, styles.bg]}>        
+                    <ActivityIndicator size="large" color="#000000" />
                 </View>
             );
         }else{
             return (
                 <View style={styles.bg}>
-                   
-                    
+                    <View style={styles.statusBar} />
                     <ScrollView
                         refreshControl={
                         <RefreshControl
@@ -94,20 +116,9 @@ export default class WorldBosses extends React.Component {
                         />
                         }
                     >
-                        <Card
-                            title="World Bosses"
-                        >
-                            {
-                                this.state.data.map((item) => (
-                                <ListItem
-                                    key={item.Hours+item.Boss}
-                                    title={item.Boss}
-                                    subtitle={(parseInt(item.Hours)+timezoneOffset)+":"+item.Minutes}
-                                    hideChevron
-                                />
-                                ))
-                            }
-                        </Card>
+
+                    {this.bossCard(this.state.data, "World Bosses")}
+
                     </ScrollView>
                 </View>
             );

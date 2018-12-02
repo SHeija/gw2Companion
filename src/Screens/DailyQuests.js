@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
+import { View, Text, Alert, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
 import { List, ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo } from '../Data/ApiHelper';
 import { styles } from '../Styles/Style.js';
@@ -81,6 +81,7 @@ export default class DailyQuests extends React.Component {
         return(
             <Card
                 title={title}
+                containerStyle={styles.card}
             >
                 {
                     datasource.map((item) => (
@@ -100,7 +101,9 @@ export default class DailyQuests extends React.Component {
     render () {
         if (this.state.loading){
             return (
-                <View><Text>Loading!</Text></View>
+                <View style={[styles.loading, styles.bg]}>        
+                    <ActivityIndicator size="large" color="#000000" />
+                </View>
             )
         }else if (!this.state.settings.pve && !this.state.settings.pvp && !this.state.settings.wvw && !this.state.settings.fractals ){
             return (
@@ -112,6 +115,8 @@ export default class DailyQuests extends React.Component {
         }else {
             return (
                 <View style={styles.bg}>
+                    <View style={styles.statusBar} />
+
 
                     <ScrollView>
                         {this.state.settings.pve ?

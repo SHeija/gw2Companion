@@ -1,14 +1,31 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, } from "react-native"
+import { Constants } from 'expo';
 
 export const styles = StyleSheet.create({
+    //generic
     container: {
         backgroundColor: '#fff',
         justifyContent: 'center',
         padding: 10,
     },
+    card: {
+        marginBottom: 10,
+    },
+    //makes the status bar behave
+    statusBar: {
+        backgroundColor: "#C2185B",
+        height: Constants.statusBarHeight,
+      },
+
+    //errors
     errorTitle: {
         color: '#000'
     },
+    minorerror: {
+        color: 'red'
+    },
+
+    //settings
     input: {
         
         height: 90,
@@ -27,17 +44,16 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 10
     },
-    minorerror: {
-        color: 'red'
-    },
+  
+
+    //misc
     loading: {
         flex: 1,
-        backgroundColor: 'pink',
-
         justifyContent: 'center',
         alignItems: 'center'
     },
     bg: {
+        flex: 1,
         backgroundColor: 'pink'
     }
 

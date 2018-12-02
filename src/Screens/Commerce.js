@@ -130,6 +130,7 @@ export default class Commerce extends React.Component {
         return (            
                 <Card
                     title="Waiting for Pickup"
+                    style={styles.card}
                 >
                 <View>
                     <Text>Coins:</Text>
@@ -162,6 +163,7 @@ export default class Commerce extends React.Component {
         return (
             <Card
                 title="Wallet"
+                style={styles.card}
             >
                 {
                     this.state.wallet.map((item) => (
@@ -202,8 +204,8 @@ export default class Commerce extends React.Component {
             );
         }else if (this.state.loading){
             return(
-                <View style={styles.loading}>        
-                    <ActivityIndicator size="large" color="#00ff00" />
+                <View style={[styles.loading, styles.bg]}>        
+                    <ActivityIndicator size="large" color="#000000" />
                 </View>
             );
         }else if(this.state.invalidKey){
@@ -218,6 +220,7 @@ export default class Commerce extends React.Component {
         else{
             return(
                 <View style={styles.bg}>
+                    <View style={styles.statusBar} />
                     <ScrollView>
                         {this.deliveryCard()}
                         {this.walletCard()}       
