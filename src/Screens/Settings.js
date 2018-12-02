@@ -187,6 +187,7 @@ export default class Settings extends React.Component {
                             buttonStyle={styles.settingsbutton}
                             title='Save settings'
                             onPress={this.saveOnPress}
+                            backgroundColor="#C2185B"
                         />
                     </View>
               

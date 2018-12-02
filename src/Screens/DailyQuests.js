@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Alert, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
-import { List, ListItem, Card, } from 'react-native-elements';
+import { ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo } from '../Data/ApiHelper';
 import { styles } from '../Styles/Style.js';
 

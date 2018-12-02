@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
 
     //errors
     errorTitle: {
-        color: '#000'
+        color: 'red'
     },
     minorerror: {
         color: 'red'
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
         
         height: 90,
         width: '100%',
-        borderColor: 'green', 
+        borderColor: '#C2185B', 
         borderWidth: 1
     },
     settingslist: {

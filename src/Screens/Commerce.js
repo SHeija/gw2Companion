@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Alert, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
-import { Text, List, ListItem, Card, Icon, Avatar } from 'react-native-elements';
+import { Text, ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo, keyValidator, permissionValidator } from '../Data/ApiHelper';
 import { styles } from '../Styles/Style.js';
 
@@ -108,7 +108,6 @@ export default class Commerce extends React.Component {
             for (let j = 0; j<Object.keys(walletNames).length;j++){
                 if (wallet[i].id == walletNames[j].id){
                     wallet[i]["name"] = walletNames[j].name;
-                    //wallet[i]["icon"] = walletNames[j].icon;
                 }
             }
         }
@@ -147,7 +146,6 @@ export default class Commerce extends React.Component {
                                 key={item.id}
                                 title={item.name}
                                 subtitle={item.description}
-                                leftAvatar={{ source: { uri: item.icon } }}
                                 subtitleNumberOfLines = {5}
                                 hideChevron
                             />
@@ -172,7 +170,6 @@ export default class Commerce extends React.Component {
                             key={item.id}
                             title={item.name}
                             subtitle={item.name == "Coin" ? this.getGSC(item.value) : item.value}
-                            leftAvatar={{ source: { uri: item.icon } }}
                             subtitleNumberOfLines = {5}
                             hideChevron
                         />
@@ -184,13 +181,22 @@ export default class Commerce extends React.Component {
 
     errorCard = (msg) => {
         return (
+        <View
+            style={styles.bg}
+        >
+            <View style={styles.statusBar} />
             <Card
                 title="Error"
+                titleStyle={styles.errorTitle}
+                style={styles.card}
             >
                 <View>
                     <Text>{msg}</Text>
                 </View>
             </Card>
+
+        </View>
+            
         );
     }
 
