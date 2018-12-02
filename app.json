@@ -1,12 +1,12 @@
 {
   "expo": {
     "name": "gw2Companion",
-    "description": "This project is really great.",
+    "description": "Companion app for Guild wars 2",
     "slug": "gw2Companion",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,7 +21,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "fi.haaga-helia.gw2companion"
+
+    },
+    "android": {
+      "package": "fi.haaga-helia.gw2companion"
     }
   }
 }
