@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
-import { List, ListItem, } from 'react-native-elements';
+import { View, Text, Alert, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
+import { ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo } from '../Data/ApiHelper';
-
+import { styles } from '../Styles/Style.js';
 
 export default class DailyQuests extends React.Component {
     
@@ -66,19 +66,44 @@ export default class DailyQuests extends React.Component {
             this.setState({
                 settings:{...this.state.settings, ...settings}
               });
+          }else{
+            const defaultSettings = {"pve":true, "pvp":true, "wvw":true, "fractals":true}
+            this.setState({
+                settings:{...this.state.settings, ...defaultSettings}
+            });
           }
         }catch (error){
           Alert.alert('Error reading data');
         }
     }
 
-    
-    
+    dataCard = (datasource, title) =>{
+        return(
+            <Card
+                title={title}
+                containerStyle={styles.card}
+            >
+                {
+                    datasource.map((item) => (
+                    <ListItem
+                        key={item.id}
+                        title={item.name}
+                        subtitle={item.requirement}
+                        subtitleNumberOfLines = {5}
+                        hideChevron
+                    />
+                    ))
+                }
+            </Card>
+        );
+    }
    
     render () {
         if (this.state.loading){
             return (
-                <View><Text>Loading!</Text></View>
+                <View style={[styles.loading, styles.bg]}>        
+                    <ActivityIndicator size="large" color="#000000" />
+                </View>
             )
         }else if (!this.state.settings.pve && !this.state.settings.pvp && !this.state.settings.wvw && !this.state.settings.fractals ){
             return (
@@ -89,76 +114,28 @@ export default class DailyQuests extends React.Component {
         
         }else {
             return (
-                <View>
+                <View style={styles.bg}>
+                    <View style={styles.statusBar} />
+
+
                     <ScrollView>
                         {this.state.settings.pve ?
-                            <List>
-                            {
-                                this.state.data.pve.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-                                />
-                                ))
-                            }
-                            </List>
+                            this.dataCard(this.state.data.pve, "PvE")
                             :
                             <View></View>
                         }
                         {this.state.settings.pvp ?
-                            <List>
-                            {
-                                this.state.data.pvp.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-    
-                                />
-                                ))
-                            }
-                            </List>
+                            this.dataCard(this.state.data.pvp, "PvP")
                             :
                             <View></View>
                         }
                         {this.state.settings.wvw ?
-                            <List>
-                            {
-                                this.state.data.wvw.map((item) => (
-                                <ListItem
-                                    key={item.id}
-                                    title={item.name}
-                                    subtitle={item.requirement}
-                                    subtitleNumberOfLines = {5}
-                                    hideChevron
-    
-                                />
-                                ))
-                            }
-                            </List>
+                            this.dataCard(this.state.data.wvw, "WvW")
                             :
                             <View></View>
                         }
                         {this.state.settings.fractals ?
-                             <List>
-                             {
-                                 this.state.data.fractals.map((item) => (
-                                 <ListItem
-                                     key={item.id}
-                                     title={item.name}
-                                     subtitle={item.requirement}
-                                     subtitleNumberOfLines = {5}
-                                     hideChevron
-     
-                                 />
-                                 ))
-                             }
-                            </List>
+                            this.dataCard(this.state.data.fractals, "Fractals")
                             :
                             <View></View>
                         }

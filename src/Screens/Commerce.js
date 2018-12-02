@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
-import { List, ListItem, } from 'react-native-elements';
+import { View, Alert, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
+import { Text, ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo, keyValidator, permissionValidator } from '../Data/ApiHelper';
+import { styles } from '../Styles/Style.js';
+
 
 export default class Commerce extends React.Component {
     constructor(props){
@@ -20,8 +22,6 @@ export default class Commerce extends React.Component {
             this.setState({
                 loading:true,
                 apiKey: "", //nukes previous data if apiKey was changed
-                delivery: {},
-                wallet: {},
             });
             this.loadSettings()
             .then(() =>{
@@ -53,13 +53,15 @@ export default class Commerce extends React.Component {
         //check if the key is valid
         const apiKey = this.state.apiKey;
         const keyIsValid = await keyValidator(apiKey, 'id');
-        const hasPermission = await permissionValidator(apiKey, 'wallet')
        
         //attempt only if key is valid
         if (keyIsValid){
             this.setState({
                 invalidKey: false,
             });
+
+            //check permission
+            const hasPermission = await permissionValidator(apiKey, 'wallet')
 
             if (hasPermission){
                 const delivery = await this.getDelivery(apiKey);
@@ -106,7 +108,6 @@ export default class Commerce extends React.Component {
             for (let j = 0; j<Object.keys(walletNames).length;j++){
                 if (wallet[i].id == walletNames[j].id){
                     wallet[i]["name"] = walletNames[j].name;
-                    //wallet[i]["icon"] = walletNames[j].icon;
                 }
             }
         }
@@ -124,70 +125,111 @@ export default class Commerce extends React.Component {
 
     }
 
+    deliveryCard = () => {
+        return (            
+                <Card
+                    title="Waiting for Pickup"
+                    style={styles.card}
+                >
+                <View>
+                    <Text>Coins:</Text>
+                    <Text>{this.getGSC(this.state.delivery.coins)}</Text>
+                </View>
+                <View>
+                    <Text>Items:</Text>
+                    {   
+                        this.state.delivery.items.hasOwnProperty('text') ?
+                        <Text>No items!</Text>
+                        :
+                        this.state.delivery.items.map((item) => (
+                            <ListItem
+                                key={item.id}
+                                title={item.name}
+                                subtitle={item.description}
+                                subtitleNumberOfLines = {5}
+                                hideChevron
+                            />
+                        ))
+                    }
+                </View>
+                </Card>
+            
+        );
+    }
+
+    walletCard = () => {
+        return (
+            <Card
+                title="Wallet"
+                style={styles.card}
+            >
+                {
+                    this.state.wallet.map((item) => (
+                    
+                        <ListItem
+                            key={item.id}
+                            title={item.name}
+                            subtitle={item.name == "Coin" ? this.getGSC(item.value) : item.value}
+                            subtitleNumberOfLines = {5}
+                            hideChevron
+                        />
+                    ))
+                }
+            </Card>
+        );
+    }
+
+    errorCard = (msg) => {
+        return (
+        <View
+            style={styles.bg}
+        >
+            <View style={styles.statusBar} />
+            <Card
+                title="Error"
+                titleStyle={styles.errorTitle}
+                style={styles.card}
+            >
+                <View>
+                    <Text>{msg}</Text>
+                </View>
+            </Card>
+
+        </View>
+            
+        );
+    }
+
     render(){
 
        
         
         if (this.state.apiKey == null || this.state.apiKey == ""){
             return(
-                <View><Text>No API key found</Text></View>
+                this.errorCard("No API Key found")
             );
         }else if (this.state.loading){
             return(
-                <View><Text>Loading!</Text></View>
+                <View style={[styles.loading, styles.bg]}>        
+                    <ActivityIndicator size="large" color="#000000" />
+                </View>
             );
         }else if(this.state.invalidKey){
             return(
-                <View><Text>Invalid API key</Text></View>
+                this.errorCard("Invalid API Key")
             );
         }else if(this.state.invalidPermission){
             return(
-                <View><Text>API key doesn't have permission: wallet</Text></View>
+                this.errorCard("Missing API permission: wallet")
             );
         }
         else{
             return(
-                <View>
+                <View style={styles.bg}>
+                    <View style={styles.statusBar} />
                     <ScrollView>
-                        <Text>Waiting for Pickup</Text>
-                        <View>
-                            <Text>Coins:</Text>
-                            <Text>{this.getGSC(this.state.delivery.coins)}</Text>
-                        </View>
-                        <View>
-                            <Text>Items:</Text>
-                            <List>
-                                {
-                                    this.state.delivery.items.map((item) => (
-                                        <ListItem
-                                            key={item.id}
-                                            title={item.name}
-                                            subtitle={item.description}
-                                            leftAvatar={{ source: { uri: item.icon } }}
-                                            subtitleNumberOfLines = {5}
-                                            hideChevron
-                                        />
-                                    ))
-                                }
-                            </List>
-                        </View>
-                        <Text>Wallet</Text>
-                        <List>
-                        {
-                                    this.state.wallet.map((item) => (
-                                    
-                                        <ListItem
-                                            key={item.id}
-                                            title={item.name}
-                                            subtitle={item.name == "Coin" ? this.getGSC(item.value) : item.value}
-                                            leftAvatar={{ source: { uri: item.icon } }}
-                                            subtitleNumberOfLines = {5}
-                                            hideChevron
-                                        />
-                                    ))
-                                }
-                        </List>
-                        
+                        {this.deliveryCard()}
+                        {this.walletCard()}       
                     </ScrollView>
                 </View>
             );
