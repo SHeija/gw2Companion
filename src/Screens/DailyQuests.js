@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { List, ListItem, Card, } from 'react-native-elements';
 import { getData, getInfo } from '../Data/ApiHelper';
-
+import { styles } from '../Styles/Style.js';
 
 export default class DailyQuests extends React.Component {
     
@@ -66,6 +66,11 @@ export default class DailyQuests extends React.Component {
             this.setState({
                 settings:{...this.state.settings, ...settings}
               });
+          }else{
+            const defaultSettings = {"pve":true, "pvp":true, "wvw":true, "fractals":true}
+            this.setState({
+                settings:{...this.state.settings, ...defaultSettings}
+            });
           }
         }catch (error){
           Alert.alert('Error reading data');
@@ -106,7 +111,8 @@ export default class DailyQuests extends React.Component {
         
         }else {
             return (
-                <View>
+                <View style={styles.bg}>
+
                     <ScrollView>
                         {this.state.settings.pve ?
                             this.dataCard(this.state.data.pve, "PvE")

@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, Alert, AsyncStorage, ToastAndroid, ScrollView, TextInput } from 'react-native';
+import { View, Text, Alert, AsyncStorage, ToastAndroid, ScrollView,} from 'react-native';
 import { Button, List, ListItem } from 'react-native-elements';
+import { TextInput} from 'react-native-paper';
+import { styles } from '../Styles/Style';
 
 
 export default class Settings extends React.Component {
@@ -9,7 +11,7 @@ export default class Settings extends React.Component {
         this.state = { 
             settings: {},
             apiKey: "",
-            basic:true, HoT:true, PoF:true, pve:true, pvp:true, wvw:true, fractals:true //switches
+            pve:true, pvp:true, wvw:true, fractals:true //switches
         };
     }
 
@@ -17,7 +19,7 @@ export default class Settings extends React.Component {
         this.loadSettings()
         .then(()=>{
             if (this.state.settings = null){ //if settings = null, turn everything on
-                const settings = { "basic":true, "HoT":true, "PoF":true, "pve":true, "pvp":true, "wvw":true, "fractals":true}
+                const settings = {"pve":true, "pvp":true, "wvw":true, "fractals":true}
                 this.setState({
                     settings:settings
                 }, () => {
@@ -81,17 +83,8 @@ export default class Settings extends React.Component {
 
     //formats settings into a Json
     saveOnPress = () => {
-        let settings = {"GuildWars2":false, "HeartOfThorns":false, "PathOfFire":false, "pve":false, "pvp":false, "wvw":false, "fractals":false};
+        let settings = {"pve":false, "pvp":false, "wvw":false, "fractals":false};
 
-        if (this.state.basic){
-            settings["GuildWars2"] = true;
-        }
-        if (this.state.HoT){
-            settings["HeartOfThorns"] = true;
-        }
-        if (this.state.PoF){
-            settings["PathOfFire"] = true;
-        }
         if (this.state.pve){
             settings["pve"] = true;
         }
@@ -118,105 +111,82 @@ export default class Settings extends React.Component {
         return (
             <View>
                 <ScrollView>
-                    <Text>Api Key:</Text>
-                    <TextInput
-                        onChangeText={(apiKey) => this.setState({apiKey})}
-                        value={this.state.apiKey}
-                    />
-                    {/* 
-                    <Text>Selected expansions:</Text>
-                    { !this.state.basic && !this.state.HoT && !this.state.PoF && 
-                        <Text>Note: if nothing is selected, "World bosses" will be empty</Text>
-                    }
-                    <List>
-                        <ListItem
-                            title="Guild Wars 2"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.basic}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,basic: value}
-                                })
-                            }}
+                    <View
+                        style = {styles.container}
+                    >
+                        <Text style={styles.settingstitle}>Authentication</Text>
+                        <TextInput
+                            label = "API Key"
+                            onChangeText={(apiKey) => this.setState({apiKey})}
+                            value={this.state.apiKey}
+                            style= {styles.input}
+                            multiline
+                            numberOfLines={2}
                         />
-                        <ListItem
-                            title="Heart of Throrns"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.HoT}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,HoT: value}
-                                })
-                            }}
-                        />
-                        <ListItem
-                            title="Path of Fire"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.PoF}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,PoF: value}
-                                })
-                            }}
-                        />
+                   </View>
+                   <View
+                    style={styles.container}
+                   >
+                        <Text style={styles.settingstitle}>Selected Content</Text>
+                        { !this.state.pve && !this.state.pvp && !this.state.wvw && !this.state.fractals && 
+                            <Text style={styles.minorerror}>Note: if nothing is selected, "Daily quests" will be empty</Text>
+                        }
+                        <List
+                            containerStyle={styles.settingslist}
+                        >
+                            <ListItem
+                                title="PvE"
+                                hideChevron
+                                switchButton
+                                switched = {this.state.pve}
+                                onSwitch = {(value) => {
+                                    this.setState(previousState => {
+                                    return {...previousState,pve: value}
+                                    })
+                                }}
+                            />
+                            <ListItem
+                                title="PvP"
+                                hideChevron
+                                switchButton
+                                switched = {this.state.pvp}
+                                onSwitch = {(value) => {
+                                    this.setState(previousState => {
+                                    return {...previousState,pvp: value}
+                                    })
+                                }}
+                            />
+                            <ListItem
+                                title="WvW"
+                                hideChevron
+                                switchButton
+                                switched = {this.state.wvw}
+                                onSwitch = {(value) => {
+                                    this.setState(previousState => {
+                                    return {...previousState,wvw: value}
+                                    })
+                                }}
+                            />
+                            <ListItem
+                                title="Fractals"
+                                hideChevron
+                                switchButton
+                                switched = {this.state.fractals}
+                                onSwitch = {(value) => {
+                                    this.setState(previousState => {
+                                    return {...previousState,fractals: value}
+                                    })
+                                }}
+                            />
+                            
+                        </List>
                         
-                    </List>
-                    */}
-                    <Text>Selected Content:</Text>
-                    { !this.state.pve && !this.state.pvp && !this.state.wvw && !this.state.fractals && 
-                        <Text>Note: if nothing is selected, "Daily quests" will be empty</Text>
-                    }
-                    <List>
-                        <ListItem
-                            title="PvE"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.pve}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,pve: value}
-                                })
-                            }}
+                        <Button 
+                            buttonStyle={styles.settingsbutton}
+                            title='Save settings'
+                            onPress={this.saveOnPress}
                         />
-                        <ListItem
-                            title="PvP"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.pvp}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,pvp: value}
-                                })
-                            }}
-                        />
-                        <ListItem
-                            title="WvW"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.wvw}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,wvw: value}
-                                })
-                            }}
-                        />
-                        <ListItem
-                            title="Fractals"
-                            hideChevron
-                            switchButton
-                            switched = {this.state.fractals}
-                            onSwitch = {(value) => {
-                                this.setState(previousState => {
-                                return {...previousState,fractals: value}
-                                })
-                            }}
-                        />
-                        
-                    </List>
-                    <Button title='Save settings' onPress={this.saveOnPress}/>
+                    </View>
               
                 </ScrollView>
             </View>

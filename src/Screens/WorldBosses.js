@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Alert, RefreshControl} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert, RefreshControl, ActivityIndicator} from 'react-native';
 import { List, ListItem, Card } from 'react-native-elements'
 import schedule from '../Data/scheduleVanilla.json';
+import { styles } from '../Styles/Style.js';
 
 export default class WorldBosses extends React.Component {
 
@@ -76,11 +77,13 @@ export default class WorldBosses extends React.Component {
 
         if (this.state.loading){
             return(
-                <View><Text>Loading!</Text></View>
+                <View style={styles.loading}>        
+                    <ActivityIndicator size="large" color="#00ff00" />
+                </View>
             );
         }else{
             return (
-                <View>
+                <View style={styles.bg}>
                    
                     
                     <ScrollView
