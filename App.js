@@ -1,5 +1,5 @@
 import React from 'react';
-import { createMaterialTopTabNavigator,  } from 'react-navigation';
+import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 import WorldBosses from './src/Screens/WorldBosses';
 import DailyQuests from './src/Screens/DailyQuests';
 import Settings from './src/Screens/Settings';
@@ -31,14 +31,14 @@ console.disableYellowBox = true;
     
 });
 
-export default class App extends React.Component {
+const AppContainer = createAppContainer(Tabs);
 
-  
+export default class App extends React.Component {
 
   render () {
     return (
     
-            <Tabs/>
+            <AppContainer/>
 
 
     );

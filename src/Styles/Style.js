@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     //makes the status bar behave
     statusBar: {
         backgroundColor: "#C2185B",
-        height: Constants.statusBarHeight,
+        height: 20,
       },
 
     //errors
